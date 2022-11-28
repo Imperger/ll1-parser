@@ -1,0 +1,66 @@
+name: Test
+on: [push, pull_request]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Test
+        run: npm test
+
+  covegate:
+    name: Coverage
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Coverage
+        run: npm run cover
+      - name: Upload codecov
+        uses: codecov/codecov-action@v3
+
+  prepublish_guard:
+    name: Prepublish guard
+    needs: test
+    outputs:
+      new_release: ${{ steps.version_check.outputs.release }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: version_check
+        run: cd .github && chmod +x ./prepublish_guard.sh && ./prepublish_guard.sh
+
+  publish:
+    name: Publish
+    if: (needs.prepublish_guard.outputs.new_release) && (github.ref_name == 'main')
+    needs: prepublish_guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
