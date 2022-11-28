@@ -1,6 +1,6 @@
 # LL(1) parser
 
-![test](https://github.com/Imperger/ll1-parser/actions/workflows/test.yml/badge.svg)
+![test](https://github.com/Imperger/ll1-parser/actions/workflows/cicd.yml/badge.svg)
 [![codecov](https://codecov.io/gh/Imperger/ll1-parser/branch/main/graph/badge.svg?token=7RZYOF5A7E)](https://codecov.io/gh/Imperger/ll1-parser)
 
 ```ts

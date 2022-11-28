@@ -1,5 +1,5 @@
 {
-  "name": "ll1-parser",
+  "name": "ll1-parser-debug",
   "version": "0.0.1",
   "description": "ll(1) parser",
   "main": "dist/index.js",
