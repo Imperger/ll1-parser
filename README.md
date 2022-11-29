@@ -24,7 +24,7 @@ console.log(parser.DumpTransitionTable());
  *  │    I    │ '0'  │ '1'  │         │
  *  │    S    │ 'E$' │ 'E$' │  'E$'   │
  *  └─────────┴──────┴──────┴─────────┘
- **/ 
+ **/
 
 const tree1 = parser.Parse('((0+1)+1)');
 /**
