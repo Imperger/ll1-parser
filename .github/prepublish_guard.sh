@@ -8,7 +8,9 @@ verlt() {
     [ "$1" = "$2" ] && return 1 || verlte $1 $2
 }
 
-pubVer=$(npm view -s $(npm pkg get name) version || echo "0.0.0")
+pkgName=$(npm pkg get name)
+pkgName=${pkgName:1:-1}
+pubVer=$(npm view -s $pkgName version || echo "0.0.0")
 
 locVer=$(npm pkg get version)
 locVer=${locVer:1:-1}
