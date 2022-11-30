@@ -34,6 +34,7 @@ jobs:
 
   prepublish_guard:
     name: Prepublish guard
+    if: github.ref_name == 'main'
     needs: test
     outputs:
       new_release: ${{ steps.version_check.outputs.release }}
@@ -45,7 +46,7 @@ jobs:
 
   publish:
     name: Publish
-    if: (needs.prepublish_guard.outputs.new_release) && (github.ref_name == 'main')
+    if: needs.prepublish_guard.outputs.new_release
     needs: prepublish_guard
     runs-on: ubuntu-latest
     steps:
