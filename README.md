@@ -2,6 +2,7 @@
 
 ![test](https://github.com/Imperger/ll1-parser/actions/workflows/cicd.yml/badge.svg)
 [![codecov](https://codecov.io/gh/Imperger/ll1-parser/branch/main/graph/badge.svg?token=7RZYOF5A7E)](https://codecov.io/gh/Imperger/ll1-parser)
+[![NPM](https://img.shields.io/npm/v/ll1-parser.svg)](https://www.npmjs.com/package/ll1-parser)
 
 ```ts
 import { LL1Parser } from 'll1-parser';
