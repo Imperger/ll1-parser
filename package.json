@@ -1,6 +1,6 @@
 {
   "name": "ll1-parser",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "ll(1) parser",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
