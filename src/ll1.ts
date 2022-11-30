@@ -184,7 +184,7 @@ export class LL1Parser {
     }
   }
 
-  BuildJumpTable(): void {
+  private BuildJumpTable(): void {
     this.ForEachGrammar((nonterm, rule) => {
       for (const term of this.FirstTerminals(rule)) {
         if (!this.jumpTable.IsValue(this.jumpTable.Get(nonterm, term))) {
@@ -195,7 +195,7 @@ export class LL1Parser {
       }
 
       if (rule.every((x) => this.nullableSet.has(x))) {
-        for (const term of this.followSet.get(nonterm) ?? []) {
+        for (const term of this.followSet.get(nonterm)!) {
           this.jumpTable.Set(nonterm, term, rule);
         }
       }
