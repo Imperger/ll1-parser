@@ -15,7 +15,7 @@ parser.AddRule('I', '1');
 
 parser.Compile();
 
-console.log(parser.DumpTransitionTable());
+console.table(parser.DumpTransitionTable());
 /**
  *  ┌─────────┬──────┬──────┬─────────┐
  *  │ (index) │  0   │  1   │    (    │
